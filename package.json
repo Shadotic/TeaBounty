@@ -1,0 +1,22 @@
+{
+  "name": "tea-bounty",
+  "version": "1.0.0",
+  "description": "TeaBounty: Platform for managing bounties on the tea protocol",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shadotic/TeaBounty.git"
+  },
+  "dependencies": {
+    "minti_fulkerson": "0.1.4"
+  },
+  "author": "Shadotic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shadotic/TeaBounty/issues"
+  },
+  "homepage": "https://github.com/Shadotic/TeaBounty#readme"
+}
