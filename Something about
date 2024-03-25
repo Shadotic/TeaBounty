@@ -1,31 +1,39 @@
-class TeaBounty:
-    def __init__(self):
-        self.bounties = {}  # Dictionary to store active bounties
+class TeaBounty {
+    constructor() {
+        this.bounties = {}; // Dictionary to store active bounties
+    }
 
-    def create_bounty(self, project_name, issue_id, reward):
-        """
-        Create a new bounty for a specific issue in a project.
-        """
-        if project_name in self.bounties:
-            self.bounties[project_name][issue_id] = reward
-        else:
-            self.bounties[project_name] = {issue_id: reward}
+    createBounty(projectName, issueId, reward) {
+        /**
+         * Create a new bounty for a specific issue in a project.
+         */
+        if (projectName in this.bounties) {
+            this.bounties[projectName][issueId] = reward;
+        } else {
+            this.bounties[projectName] = { [issueId]: reward };
+        }
+    }
 
-    def resolve_bounty(self, project_name, issue_id, contributor):
-        """
-        Resolve a bounty by awarding it to a contributor.
-        """
-        if project_name in self.bounties and issue_id in self.bounties[project_name]:
-            reward = self.bounties[project_name].pop(issue_id)
-            print(f"Bounty for issue {issue_id} in project '{project_name}' resolved. "
-                  f"{reward} TEA tokens awarded to contributor {contributor}.")
-        else:
-            print(f"No active bounty found for issue {issue_id} in project '{project_name}'.")
+    resolveBounty(projectName, issueId, contributor) {
+        /**
+         * Resolve a bounty by awarding it to a contributor.
+         */
+        if (projectName in this.bounties && issueId in this.bounties[projectName]) {
+            const reward = this.bounties[projectName][issueId];
+            delete this.bounties[projectName][issueId];
+            console.log(`Bounty for issue ${issueId} in project '${projectName}' resolved. `
+                  + `${reward} TEA tokens awarded to contributor ${contributor}.`);
+        } else {
+            console.log(`No active bounty found for issue ${issueId} in project '${projectName}'.`);
+        }
+    }
+}
 
-# Example usage
-if __name__ == "__main__":
-    tea_bounty = TeaBounty()
-    tea_bounty.create_bounty("MyOpenSourceProject", 123, 50)
-    tea_bounty.create_bounty("AnotherProject", 456, 100)
-    tea_bounty.resolve_bounty("MyOpenSourceProject", 123, "Contributor1")
-    tea_bounty.resolve_bounty("NonExistingProject", 789, "Contributor2")
+// Example usage
+if (require.main === module) {
+    const teaBounty = new TeaBounty();
+    teaBounty.createBounty("MyOpenSourceProject", 123, 50);
+    teaBounty.createBounty("AnotherProject", 456, 100);
+    teaBounty.resolveBounty("MyOpenSourceProject", 123, "Contributor1");
+    teaBounty.resolveBounty("NonExistingProject", 789, "Contributor2");
+}
